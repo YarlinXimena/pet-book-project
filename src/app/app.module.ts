@@ -1,0 +1,31 @@
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+//import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { GalleryComponent } from './image-gallery/image-gallery.component';
+import { ImageDetailComponent } from './image-details/image-details.component';
+import { FilterimagesPipe } from './filterimages.pipe';
+import { ImageService } from './image.service';
+import { ImageDescriptionComponent } from './image-description/image-description.component';
+
+@NgModule({
+  declarations: [
+    AppComponent,
+    GalleryComponent,
+    ImageDetailComponent,
+    FilterimagesPipe,
+    ImageDescriptionComponent
+  ],
+  imports: [
+    BrowserModule,
+    FormsModule,
+    AppRoutingModule,
+    //NgbModule
+  ],
+  providers: [ImageService, FilterimagesPipe],
+  bootstrap: [AppComponent]
+})
+export class AppModule { }
