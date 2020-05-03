@@ -20,9 +20,10 @@ jobs:
           name: Run unit test
           command: npm test
       - sonarcloud/scan
-      - aws-s3/copy:     
+      - aws-s3/sync:     
           arguments: |
-            --acl public-read --recursive
+            --acl public-read
+          overwrite: true
           from: ~/pet_book/dist/pet-book
           to: 's3://pet-book-project'
 orbs:
