@@ -4,17 +4,35 @@ jobs:
   build:
     docker:
       - image: 'circleci/openjdk:8-node-browsers'
+    working_directory: ~/pet_book
     steps:
       - checkout
+      - run: 
+          name: Install CLI
+          command: npm install @angular/cli
       - run:
           name: Install dependencies and build project
-          command: npm install & npm build --skip-test
+          command: npm install 
+      - run:
+          name: Build Project
+          command: npm run-script build
+      - run:
+          name: Run unit test
+          command: npm test
       - sonarcloud/scan
+      - aws-s3/sync:     
+          arguments: |
+            --acl public-read
+          overwrite: true
+          from: ~/pet_book/dist/pet-book
+          to: 's3://pet-book-project'
 orbs:
   sonarcloud: sonarsource/sonarcloud@1.0.1
+  aws-s3: circleci/aws-s3@1.0.15
 
 workflows:
   main:
     jobs:
       - build:
           context: SonarCloud
+          
