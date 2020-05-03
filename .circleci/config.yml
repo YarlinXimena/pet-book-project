@@ -24,7 +24,7 @@ jobs:
     steps:     
       - aws-s3/sync:             
           overwrite: true
-          from: pet_book
+          from: ~/pet_book
           to: 's3://pet-book-project'
 orbs:
   sonarcloud: sonarsource/sonarcloud@1.0.1
