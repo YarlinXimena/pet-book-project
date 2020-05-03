@@ -23,7 +23,7 @@ jobs:
       - aws-s3/copy:     
           arguments: |
             --acl public-read --recursive
-          from: ~/pet_book/dist
+          from: ~/pet_book/dist/pet-book
           to: 's3://pet-book-project'
 orbs:
   sonarcloud: sonarsource/sonarcloud@1.0.1
