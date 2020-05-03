@@ -4,6 +4,7 @@ jobs:
   build:
     docker:
       - image: 'circleci/openjdk:8-node-browsers'
+    working_directory: ~/pet_book
     steps:
       - checkout
       - run: 
@@ -16,11 +17,29 @@ jobs:
           name: Run unit test
           command: npm test
       - sonarcloud/scan
+  deploy:
+    machine:
+        enabled: true
+    working_directory: ~/pet_book
+    steps:     
+      - aws-s3/sync:
+          arguments: |
+            --acl public-read \
+            --cache-control "max-age=86400"          
+          overwrite: true
+          arguments: '--dry-run'
+          from: pet_book
+          to: 's3://pet-book-project'
 orbs:
   sonarcloud: sonarsource/sonarcloud@1.0.1
+  aws-s3: circleci/aws-s3@1.0.15
 
 workflows:
   main:
     jobs:
       - build:
           context: SonarCloud
+      - deploy:
+          requires:
+              - build
+          
