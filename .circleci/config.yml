@@ -15,10 +15,10 @@ jobs:
           command: npm install 
       - run:
           name: Build Project
-          command: ng build
+          command: npm build
       - run:
           name: Run unit test
-          command: npm test
+          command: npm test-ci
       - sonarcloud/scan
       - aws-s3/sync:             
           overwrite: true
