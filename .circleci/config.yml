@@ -23,7 +23,6 @@ jobs:
       - aws-s3/copy:     
           arguments: |
             --acl public-read --recursive
-          overwrite: true
           from: ~/pet_book/dist
           to: 's3://pet-book-project'
 orbs:
