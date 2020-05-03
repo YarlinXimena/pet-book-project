@@ -8,7 +8,7 @@ jobs:
       - checkout
       - run: 
           name: Install CLI
-          command: npm install -g @angular/cli
+          command: npm install @angular/cli
       - run:
           name: Install dependencies and build project
           command: npm install & npm build --skip-test
