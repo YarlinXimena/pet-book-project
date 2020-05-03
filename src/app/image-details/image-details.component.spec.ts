@@ -22,4 +22,8 @@ xdescribe('ImageDetailsComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  describe('#ngOnInit', ()=>{
+    
+  });
 });
