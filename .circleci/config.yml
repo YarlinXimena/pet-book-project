@@ -12,7 +12,10 @@ jobs:
           command: npm install @angular/cli
       - run:
           name: Install dependencies and build project
-          command: npm install & npm build --skip-test
+          command: npm install 
+      - run:
+          name: Build Project
+          command: ng build
       - run:
           name: Run unit test
           command: npm test
