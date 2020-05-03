@@ -6,6 +6,9 @@ jobs:
       - image: 'circleci/openjdk:8-node-browsers'
     steps:
       - checkout
+      - run: 
+          name: Install CLI
+          command: npm install -g @angular/cli
       - run:
           name: Install dependencies and build project
           command: npm install & npm build --skip-test
