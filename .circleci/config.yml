@@ -17,11 +17,6 @@ jobs:
           name: Run unit test
           command: npm test
       - sonarcloud/scan
-  deploy:
-    machine:
-        enabled: true
-    working_directory: ~/pet_book
-    steps:     
       - aws-s3/sync:             
           overwrite: true
           from: ~/pet_book
@@ -35,7 +30,4 @@ workflows:
     jobs:
       - build:
           context: SonarCloud
-      - deploy:
-          requires:
-              - build
           
