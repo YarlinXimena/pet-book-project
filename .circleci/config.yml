@@ -26,6 +26,19 @@ jobs:
           overwrite: true
           from: ~/pet_book/dist/pet-book
           to: 's3://pet-book-project'
+   test:
+      docker:
+        - image: 'circleci/openjdk:8-node-browsers'
+      steps:
+        -run:
+           name: Clone repository
+           command: git clone https://github.com/YarlinXimena/serenity-project.git
+        - run:
+           name: Move to serenity
+           command: cd serenity-project
+        -run:
+           name: Pruebas
+           command: gradle/test
 orbs:
   sonarcloud: sonarsource/sonarcloud@1.0.1
   aws-s3: circleci/aws-s3@1.0.15
@@ -35,4 +48,7 @@ workflows:
     jobs:
       - build:
           context: SonarCloud
+      - test: 
+          requires:
+            - build
           
