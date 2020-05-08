@@ -34,11 +34,8 @@ jobs:
            name: Clone repository
            command: git clone https://github.com/YarlinXimena/serenity-project.git
        - run:
-           name: Move to serenity
+           name: Move to serenity and test
            command: cd serenity-project && ./gradlew -test
-       - run:
-           name: Pruebas
-           command: serenity-project/gradlew test
 orbs:
   sonarcloud: sonarsource/sonarcloud@1.0.1
   aws-s3: circleci/aws-s3@1.0.15
